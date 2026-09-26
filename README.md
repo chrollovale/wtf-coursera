@@ -14,6 +14,7 @@ A clean, open-source browser extension that automates Coursera progress by direc
 * **Complete Readings Only:** Sweeps the course syllabus and bulk-completes all reading materials in the background.
 * **Complete Entire Course:** Batches and completes all remaining video lectures and readings in the active course.
 * **Clean and Private:** 100% client-side logic. No tracking, telemetry, or remote servers.
+  ![Image Alt](https://github.com/chrollovale/wtf-coursera/blob/3d995f300a8a492382a7e06db1cfee57dd38c9c2/Preview2.png)
 
 ---
 
@@ -33,6 +34,8 @@ A clean, open-source browser extension that automates Coursera progress by direc
 2. Open any lesson page (e.g., `/learn/<course-slug>/lecture/...`).
 3. Click the extension icon and select your desired action.
 
+  ![Image Alt](https://github.com/chrollovale/wtf-coursera/blob/3d995f300a8a492382a7e06db1cfee57dd38c9c2/Preview3.png)
+  
 ---
 
 ## Disclaimer
