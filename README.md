@@ -4,6 +4,8 @@
 
 A clean, open-source browser extension that automates Coursera progress by directly interacting with native APIs. Mark videos and readings complete instantly without leaving content playing in background tabs.
 
+ ![Image Alt](https://github.com/chrollovale/wtf-coursera/blob/c682a25787fad005dba89aa4c47eddb77a035f74/Preview1.png)
+
 ---
 
 ## Features
