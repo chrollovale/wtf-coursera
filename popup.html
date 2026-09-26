@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WTF Coursera</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --bg: #ffffff;
+      --paper: #fdfcf8;
+      --ink: #16140f;
+      --ink-soft: #726d61;
+
+      --border: #16140f;
+      --shadow: 4px 4px 0 var(--border);
+      --shadow-sm: 2px 2px 0 var(--border);
+
+      --accent: #ff5a36;
+      --accent-2: #ffcf4d;
+
+      --success: #2f6f4e;
+      --success-bg: #eaf3ec;
+
+      --error: #b3392a;
+      --error-bg: #fbebe7;
+    }
+
+    body {
+      width: 360px;
+      margin: 0;
+      font-family: 'Space Mono', 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--ink);
+      background: var(--bg);
+      background-image:
+        linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px);
+      background-size: 18px 18px;
+      min-height: 400px;
+      overflow-x: hidden;
+    }
+
+    .shell {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 4px;
+      padding-bottom: 14px;
+      border-bottom: 2px dashed var(--border);
+    }
+
+    .logo-container {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .logo-container svg {
+      width: 19px;
+      height: 19px;
+      fill: var(--ink);
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .header-text p {
+      margin: 3px 0 0;
+      font-size: 10px;
+      color: var(--ink-soft);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .status-card {
+      background: var(--paper);
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .status-header {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--ink);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+
+    .status-header::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-2);
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px dashed rgba(22,20,15,0.2);
+    }
+    .status-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .status-label {
+      color: var(--ink-soft);
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    .status-val {
+      font-weight: 700;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--ink);
+      background: #fff;
+      border: 1.5px solid var(--border);
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+
+    .status-val.highlight {
+      color: var(--ink);
+      background: var(--accent-2);
+      border-color: var(--border);
+    }
+
+    .alert {
+      padding: 12px;
+      border-radius: 6px;
+      border: 2px solid var(--border);
+      font-size: 12px;
+      font-weight: 700;
+      display: none;
+      line-height: 1.4;
+      animation: slideDown 0.2s ease;
+    }
+
+    .btn {
+      width: 100%;
+      border: 2px solid var(--border);
+      padding: 12px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--ink);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      position: relative;
+      background: var(--bg);
+      box-shadow: var(--shadow);
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--border);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--border);
+    }
+
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: var(--shadow-sm) !important;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .btn-magic {
+      background: var(--accent-2);
+      color: var(--ink);
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .btn svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    .spinner {
+      display: none;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 0.7s linear infinite;
+    }
+
+    .btn-magic .spinner,
+    .btn-outline .spinner {
+      border: 2px solid rgba(22,20,15,0.2);
+      border-top-color: var(--ink);
+    }
+
+    .btn.loading .spinner {
+      display: block;
+    }
+    .btn.loading .btn-icon {
+      display: none;
+    }
+
+    .progress-container {
+      display: none;
+      background: var(--paper);
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+      animation: slideDown 0.2s ease;
+    }
+
+    .progress-text {
+      font-size: 10px;
+      color: var(--ink);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 10px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.3s ease;
+      position: relative;
+    }
+
+    .progress-bar-fill::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      animation: shimmer 1.5s infinite;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 26px 18px;
+      color: var(--ink-soft);
+      border: 2px dashed var(--border);
+      border-radius: 6px;
+      background: var(--paper);
+    }
+    .empty-state svg {
+      width: 40px;
+      height: 40px;
+      fill: rgba(22,20,15,0.18);
+      margin-bottom: 10px;
+    }
+    .empty-state p {
+      margin: 0;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 10px;
+      color: var(--ink-soft);
+      margin-top: 2px;
+      padding-top: 12px;
+      border-top: 2px dashed var(--border);
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+
+    <div class="header">
+      <div class="logo-container">
+        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+      </div>
+      <div class="header-text">
+        <h1>WTF Coursera</h1>
+        <p>Aniket: Dear Coursera, what the fuck even is this?</p>
+      </div>
+    </div>
+
+    <div id="result-alert" class="alert"></div>
+
+    <div id="page-status" class="status-card" style="display: none;">
+      <div class="status-header">SYSTEM SCAN</div>
+      <div class="status-row">
+        <span class="status-label">Lesson Type</span>
+        <span class="status-val highlight" id="lbl-type">--</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">Item ID</span>
+        <span class="status-val" id="lbl-item">--</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">Course</span>
+        <span class="status-val" id="lbl-course">--</span>
+      </div>
+    </div>
+
+    <div id="empty-msg" class="empty-state" style="display: none;">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+      <p>Open a Coursera lesson page and let’s pretend to study together.</p>
+    </div>
+
+    <div class="actions" id="action-buttons" style="display: none;">
+      <button id="btn-skip-current" class="btn btn-primary" style="margin-bottom: 10px;">
+        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M13 3v6h8V3h-8zm0 18h8V11h-8v10zM3 21h8v-6H3v6zm0-8h8V3H3v10z"/></svg>
+        <div class="spinner"></div>
+        <span class="btn-text">Complete Current Lesson</span>
+      </button>
+
+      <button id="btn-skip-all" class="btn btn-magic" style="margin-bottom: 10px;">
+        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19.36 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.36 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.64-4.96zM13 13v4h-2v-4H8l4-4 4 4h-3z"/></svg>
+        <div class="spinner"></div>
+        <span class="btn-text">Complete Entire Course</span>
+      </button>
+
+      <button id="btn-skip-readings" class="btn btn-outline">
+        <svg class="btn-icon" viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg>
+        <div class="spinner"></div>
+        <span class="btn-text">Complete Readings Only</span>
+      </button>
+    </div>
+
+    <!-- Progress Bar UI -->
+    <div id="bulk-progress-container" class="progress-container">
+      <div class="progress-text">
+        <span id="bulk-progress-msg">Initializing...</span>
+        <span id="bulk-progress-pct">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div id="bulk-progress-bar" class="progress-bar-fill"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Note: only works if you're actually enrolled (Enroll) in the course.
+    </div>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

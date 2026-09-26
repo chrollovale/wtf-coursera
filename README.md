@@ -1,29 +1,52 @@
-# WTF Coursera 
+<div align="center">
+  <h1>🚀 Coursera Automation Tool (Clean Version)</h1>
+  <p><strong>A 100% safe, open-source browser extension to automate Coursera tasks. Skip videos, solve quizzes, and save time efficiently without any malicious code.</strong></p>
+</div>
 
-**Built by Aniket.**
-> "Fuck these credit courses."
+<p align="center">
+  <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version">
+  <img src="https://img.shields.io/badge/status-active-success.svg" alt="Status">
+  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
+</p>
 
-A Chrome extension that automates course progress on Coursera. It directly interacts with the Coursera API to instantly mark videos and reading materials as fully completed, saving you from leaving tabs open just to get a green checkmark.
+## 🌟 Introduction
 
-## ⚡ Features
-* **Complete Current Lesson:** Instantly marks the active video or reading as done.
-* **Complete Readings Only:** Scans the course syllabus and bulk-completes all reading materials in the background.
-* **Complete Entire Course:** Automatically scans and completes all remaining videos and readings in the active course.
+This is the **completely safe, clean-rebuilt version** of the popular Coursera Skip Video / Coursera Automation extensions.
 
-## 🛠️ Installation
-This extension bypasses tracking and must be installed manually in Developer Mode.
+Unlike other versions circulating online that may contain harmful code (cookie stealing, data exfiltration), this repository provides a **transparent, from-scratch rewrite**. There are absolutely no hidden scripts, no data collection, and no remote control behavior. This tool is built by the community, for the community, ensuring your privacy and security.
 
-1. Download or clone this repository to your computer.
-2. Open Chrome (or Edge/Brave) and go to your extensions page: `chrome://extensions/`
-3. Toggle **Developer mode** ON (top right corner).
-4. Click **Load unpacked**.
-5. Select the folder containing the `manifest.json` file.
-6. Pin the **WTF Coursera** icon to your toolbar.
+## ✨ Features
 
-## 🚀 Usage
-1. Log into Coursera and ensure you are **Enrolled** in the course.
-2. Open any lesson page (e.g., `/learn/course-name/lecture/...`).
-3. Click the extension icon in your toolbar and select your desired override.
+- **✅ Auto Complete (Bypass/Skip):** Instantly skip and mark Coursera video lectures and reading materials as completed.
+- **✅ Auto Quiz Solver (AI Integration):** Automatically solves and completes quizzes with high accuracy using AI.
+- **✅ Clean & Fast:** Lightweight extension optimized for speed without bloating your browser.
+- **✅ 100% Secure & Open-Source:** Fully transparent code. No malware, no cookie tracking, completely safe for your personal Coursera account.
 
-## ⚠️ Note
-You must be officially enrolled in the course for the API to register your progress. Use for time-management purposes at your own risk.
+## 🚀 Coming Soon
+
+We are actively developing new features to make your learning experience even smoother:
+
+- **⏳ Multi-Language Support for Quizzes:** Better AI handling for quizzes in different languages.
+- **⏳ Auto-Enrollment:** Automatically enroll in courses within a specialization.
+- **⏳ Discussion Forum Auto-Post:** Automate peer-graded assignments and forum posts.
+- **⏳ Custom Shortcuts:** Keyboard shortcuts to toggle features on and off quickly.
+
+## 🛠 Installation Guide
+
+1. Clone or download this repository as a `.zip` file and extract it.
+2. Open your Chromium-based browser (Chrome, Edge, Brave) and go to the Extensions page: `chrome://extensions/`.
+3. Enable **Developer mode** in the top right corner.
+4. Click the **Load unpacked** button.
+5. Select the **extracted folder** containing the extension files.
+6. 🎉 You're done! Open Coursera and let the tool do the heavy lifting safely.
+
+## 💡 SEO & Helping the Community
+
+If you find this tool helpful, you can help us reach more people by:
+- ⭐ **Starring** this repository on GitHub!
+- 🔗 **Sharing** the link on Reddit (`r/coursera`, `r/learnprogramming`), Discord, or student forums.
+- 🏷️ Adding relevant tags to your repository in the GitHub settings (e.g., `coursera`, `coursera-skip-tool`, `automation`, `browser-extension`, `quiz-solver`).
+
+## ⚖️ Disclaimer
+
+This tool is created for educational and research purposes to demonstrate browser automation capabilities. Use it responsibly and in accordance with Coursera's terms of service.
