@@ -336,6 +336,27 @@
       border-top: 2px dashed var(--border);
     }
 
+    .solver-card {
+      background: var(--paper);
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .solver-card h2 { margin: 0; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+    .solver-card label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--ink-soft); }
+    .solver-card select, .solver-card input, .solver-card textarea {
+      width: 100%; border: 1.5px solid var(--border); border-radius: 4px; padding: 8px;
+      font: inherit; font-size: 11px; background: #fff; color: var(--ink);
+    }
+    .solver-card textarea { resize: vertical; min-height: 54px; }
+    .solver-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .solver-note { margin: 0; font-size: 9px; color: var(--ink-soft); line-height: 1.4; }
+    .solver-progress { display: none; padding: 9px; background: #fff; border: 1px dashed var(--border); font-size: 10px; line-height: 1.4; max-height: 100px; overflow: auto; }
+
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes slideDown {
       from { opacity: 0; transform: translateY(-8px); }
@@ -402,6 +423,32 @@
         <span class="btn-text">Complete Readings Only</span>
       </button>
     </div>
+
+    <section id="ai-tools" class="solver-card" style="display:none;">
+      <h2>Quiz &amp; API Solver</h2>
+      <label for="provider">AI provider</label>
+      <select id="provider">
+        <option value="nvidia">NVIDIA NIM</option>
+        <option value="openai">OpenAI</option>
+        <option value="anthropic">Anthropic</option>
+        <option value="gemini">Google Gemini</option>
+      </select>
+      <label for="model-name">Model</label>
+      <input id="model-name" type="text" placeholder="Provider default model" />
+      <label for="api-key">API key(s), comma separated for fallback</label>
+      <textarea id="api-key" autocomplete="off" spellcheck="false" placeholder="Paste your provider API key"></textarea>
+      <div class="solver-grid">
+        <button id="btn-solve-quiz" class="btn btn-magic"><span class="btn-text">Solve Current Quiz</span></button>
+        <button id="btn-run-ai-course" class="btn btn-primary"><span class="btn-text">Run AI Full Course</span></button>
+        <button id="btn-run-graded" class="btn btn-outline"><span class="btn-text">Graded Only</span></button>
+        <button id="btn-run-videos" class="btn btn-outline"><span class="btn-text">Fast-Forward</span></button>
+      </div>
+      <label for="target-grade">Target grade: <span id="target-grade-label">80%</span></label>
+      <input id="target-grade" type="range" min="50" max="100" step="5" value="80" />
+      <label><input id="skip-practice" type="checkbox" checked style="width:auto;vertical-align:middle" /> Skip practice quizzes</label>
+      <p class="solver-note">Your API key is stored in this browser's extension storage and sent to the selected provider to answer quiz questions.</p>
+      <div id="solver-progress" class="solver-progress" aria-live="polite"></div>
+    </section>
 
     <!-- Progress Bar UI -->
     <div id="bulk-progress-container" class="progress-container">

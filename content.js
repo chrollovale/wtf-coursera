@@ -50,11 +50,14 @@ async function courseraFetch(url, options = {}) {
 }
 
 function getCourseContext() {
-  const match = window.location.href.match(
-    /\/learn\/([^/]+)\/(lecture|supplement|quiz|programming)\/([^/?#]+)/
+  const path = window.location.pathname;
+  const itemMatch = path.match(
+    /\/learn\/([^/]+)\/(lecture|supplement|quiz|exam|assignment|programming|peer)\/([^/?#]+)/
   );
-  if (!match) return null;
-  return { courseSlug: match[1], itemType: match[2], itemId: match[3] };
+  if (itemMatch) return { courseSlug: itemMatch[1], itemType: itemMatch[2], itemId: itemMatch[3] };
+  const courseMatch = path.match(/\/learn\/([^/]+)(?:\/|$)/);
+  if (courseMatch) return { courseSlug: courseMatch[1], itemType: 'course', itemId: null };
+  return null;
 }
 
 // ===== GET courseId AND userId =====

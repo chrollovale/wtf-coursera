@@ -13,6 +13,9 @@ A clean, open-source browser extension that automates Coursera progress by direc
 * **Complete Current Lesson:** Instantly marks the active video or reading as completed.
 * **Complete Readings Only:** Sweeps the course syllabus and bulk-completes all reading materials in the background.
 * **Complete Entire Course:** Batches and completes all remaining video lectures and readings in the active course.
+* **AI Quiz Solver:** Solves current quizzes, exams, and assignments, with retry attempts toward a configurable target grade.
+* **Provider/API Integration:** Supports NVIDIA NIM, OpenAI, Anthropic, and Google Gemini. API keys can be stacked with commas for fallback; keys and solver preferences are stored in local extension storage.
+* **Course Solver Modes:** Run the full course, graded items only, or fast-forward videos/readings only. The AI course solver can also process supported quiz and discussion items.
 * **Clean and Private:** 100% client-side logic. No tracking, telemetry, or remote servers.
   ![Image Alt](https://github.com/chrollovale/wtf-coursera/blob/3d995f300a8a492382a7e06db1cfee57dd38c9c2/Preview2.png)
 
@@ -33,6 +36,7 @@ A clean, open-source browser extension that automates Coursera progress by direc
 1. Log into Coursera and ensure you are **enrolled** in the target course.
 2. Open any lesson page (e.g., `/learn/<course-slug>/lecture/...`).
 3. Click the extension icon and select your desired action.
+4. For quiz solving, choose an AI provider and enter its API key, then use **Solve Current Quiz** or **Run AI Full Course**. Leave Model blank to use the provider's default model.
 
   ![Image Alt](https://github.com/chrollovale/wtf-coursera/blob/3d995f300a8a492382a7e06db1cfee57dd38c9c2/Preview3.png)
   
